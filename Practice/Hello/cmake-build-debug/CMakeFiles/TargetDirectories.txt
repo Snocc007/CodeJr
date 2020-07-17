@@ -1,5 +1,4 @@
 /Users/snocc/CodeJr/Practice/Hello/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /Users/snocc/CodeJr/Practice/Hello/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/snocc/CodeJr/Practice/Hello/cmake-build-debug/CMakeFiles/test_library.dir
-/Users/snocc/CodeJr/Practice/Hello/cmake-build-debug/CMakeFiles/cmake_Hello_calc.dir
 /Users/snocc/CodeJr/Practice/Hello/cmake-build-debug/CMakeFiles/cmake_Hello.dir
