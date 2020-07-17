@@ -1,0 +1,3 @@
+/Users/snocc/CodeJr/Practice/Draw Square/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/snocc/CodeJr/Practice/Draw Square/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/snocc/CodeJr/Practice/Draw Square/cmake-build-debug/CMakeFiles/Draw_Square.dir
