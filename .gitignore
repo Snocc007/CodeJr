@@ -41,6 +41,7 @@ $RECYCLE.BIN/
 
 ##### MacOS
 # General
+
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -106,6 +107,9 @@ proguard/
 captures/
 
 # IntelliJ
+.CMakeLists.txt
+.idea
+.
 *.iml
 .idea/workspace.xml
 .idea/tasks.xml
