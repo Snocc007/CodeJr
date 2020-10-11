@@ -132,8 +132,39 @@ int main()
         std::cout << "key '100' does not exist" << std::endl;
     }
 
+    std::list<std::string> ListA = {"Apple", "Avocado", "Blueberries", "Durian", "Lychee"};
+    std::list<std::string> ListB = ListA;
+    std::string myVar = "Durian";
+    bool isThere = (std::find(ListA.begin(), ListA.end(), myVar) != ListA.end());
+    if (isThere == true) {
+        std::cout << myVar << " is in ListA." << std::endl;
+    } else {
+        std::cout << myVar << " is not in ListA." << std::endl;
+    }
+    std::list<std::string>::iterator itListA;
+    itListA = ListA.begin();
+    std::advance(itListA, 4);
+    ListA.insert(itListA, "Kiwifruit");
 
-    return 0;
+    if (ListA.size() > ListB.size()) {
+        std::cout << "ListA contains more elements." << std::endl;
+    } else if (ListA.size() < ListB.size()) {
+        std::cout << "ListB contains more elements." << std::endl;
+    } else {
+        std::cout << "The two lists have the same nubmer of elements." << std::endl;
+    }
+
+    itListA = std::find(ListA.begin(), ListA.end(), "Avocado");
+    int indexListA = std::distance(ListA.begin(), itListA);
+    std::cout << indexListA << std::endl;
+
+    itListA = std::find(ListB.begin(), ListB.end(), "Durian");
+    indexListA = std::distance(ListB.begin(), itListA);
+    std::cout << indexListA << std::endl;
+    itListA = ListA.begin();
+    std::advance(itListA, 3);
+    std::cout << *itListA << std::endl;
+    
 }
 
 std::string reverse(std::string str)
