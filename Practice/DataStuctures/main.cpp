@@ -100,6 +100,39 @@ int main()
     names.clear();
     std::cout << std::endl;
 
+    std::map<int, std::string> myMap;
+    std::cout << std::boolalpha;
+    std::cout << myMap.empty();
+
+    myMap[97] = "a";
+    myMap[98] = "b";
+    myMap[99] = "c";
+    myMap[65] = "A";
+    myMap[66] = "B";
+    myMap[67] = "C";
+
+    std::map<int, std::string>::iterator itMap = myMap.begin();
+
+    for (auto itMap = myMap.begin(); itMap != myMap.end(); itMap++) {
+        std::cout << itMap->first << "-" << itMap->second << std::endl;
+    }
+
+    myMap[68] = "D";
+
+    std::cout << std::endl;
+    std::cout << myMap.size() << std::endl;
+    std::cout << myMap[99] << std::endl;
+    myMap.erase(97);
+    //std::cout << myMap.at(100) << std::endl;
+    itMap = myMap.find(100);
+
+    if (itMap != myMap.end()) {
+        std::cout << "key '100' exists" << std::endl;
+    } else {
+        std::cout << "key '100' does not exist" << std::endl;
+    }
+
+
     return 0;
 }
 
