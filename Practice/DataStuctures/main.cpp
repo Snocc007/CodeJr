@@ -2,8 +2,11 @@
 #include <string>
 #include <list>
 #include <map>
+#include <vector>
 
 std::string reverse(std::string str);
+
+int cmp(std::pair<std::string, std::string> a, std::pair<std::string, std::string> b);
 
 int main()
 {
@@ -170,6 +173,53 @@ int main()
     tempList.push_back("Pomelo");
     ListB.splice(ListB.end(), tempList);
 
+    std::map<std::string, std::string> myBookMap;
+
+    myBookMap["978-1-60309-452-8"] = "A letter to Jo";
+    myBookMap["978-1-60309-459-7"] = "Lupus";
+    myBookMap["978-1-60309-444-3"] = "Red Panda and Moon Bear";
+    myBookMap["978-1-60309-461-0"] = "The Lab";
+
+
+    std::map<std::string, std::string>::iterator itBook;
+
+    std::vector<std::pair<std::string, std::string>> vectorTemp(myBookMap.begin(), myBookMap.end());
+    std::sort(vectorTemp.begin(), vectorTemp.end(), cmp);
+
+    for (int i = 0; i < vectorTemp.size(); ++i) {
+        std::cout << vectorTemp[i].second << " (ISBN: " << vectorTemp[i].first << ")" << std::endl;
+    }
+
+    for (itBook = myBookMap.begin(); itBook != myBookMap.end(); itBook++) {
+        if (itBook->first == "978-1-60309-444-3") {
+            myBookMap.erase(itBook);
+        }
+        if (itBook->second == "The Lab") {
+            myBookMap.erase(itBook);
+        }
+    }
+
+    myBookMap["978-1-60309-450-4"] = "They Called Us Enemy";
+    myBookMap["978-1-60309-453-5"] = "Why Did We Trust Him?";
+
+    itBook = myBookMap.find("478-0-61159-424-8");
+
+    if (itBook != myBookMap.end()) {
+        std::cout << "The value associated with key '478-0-61159-424-8' is: " << itBook->second << std::endl;
+    } else {
+        std::cout << "There is no value associated with key '478-0-61159-424-8'." << std::endl;
+    }
+
+    itBook = myBookMap.find("978-1-60309-453-5");
+
+    if (itBook != myBookMap.end()) {
+        std::cout << "The value associated with key '978-1-60309-453-5' is: '"
+                  << itBook->second << "'." << std::endl;
+    } else {
+        std::cout << "There is no value associated with key '978-1-60309-453-5'." << std::endl;
+    }
+
+    return 0;
 }
 
 std::string reverse(std::string str)
@@ -184,4 +234,9 @@ std::string reverse(std::string str)
         // n--;
     }
     return str;
+}
+
+int cmp(std::pair<std::string, std::string> a, std::pair<std::string, std::string> b)
+{
+    return a.second < b.second;
 }
