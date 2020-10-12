@@ -164,7 +164,12 @@ int main()
     itListA = ListA.begin();
     std::advance(itListA, 3);
     std::cout << *itListA << std::endl;
-    
+
+    std::list<std::string> tempList;
+    tempList.push_back("Passion Fruit");
+    tempList.push_back("Pomelo");
+    ListB.splice(ListB.end(), tempList);
+
 }
 
 std::string reverse(std::string str)
