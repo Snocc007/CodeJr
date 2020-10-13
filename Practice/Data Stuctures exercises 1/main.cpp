@@ -52,5 +52,33 @@ int main()
         std::cout << "We don't have Chris E. Myers' telephone number." << std::endl;
     }
 
+    // SHOPPING LIST
+
+    std::list<std::string> shoppingList = {"eggs", "milk", "fish", "apples", "bread", "chicken"};
+    std::list<std::string>::iterator itShoppingList;
+    bool ifHave = false;
+    for (itShoppingList = shoppingList.begin(); itShoppingList != shoppingList.end(); itShoppingList++) {
+        if (*itShoppingList == "milk") {
+            ifHave = true;
+        }
+    }
+    if (ifHave == true) {
+        std::cout << "We have milk on the shopping list." << std::endl;
+    } else {
+        std::cout << "We don't have milk on the shopping list." << std::endl;
+    }
+
+    ifHave = false;
+    for (itShoppingList = shoppingList.begin(); itShoppingList != shoppingList.end(); itShoppingList++) {
+        if (*itShoppingList == "bananas") {
+            ifHave = true;
+        }
+    }
+    if (ifHave == true) {
+        std::cout << "We have bananas on the shopping list." << std::endl;
+    } else {
+        std::cout << "We don't have bananas on the shopping list." << std::endl;
+    }
+
     return 0;
 }
