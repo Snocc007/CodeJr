@@ -162,6 +162,109 @@ int main()
         }
     }
 
+    // SHOPPING LIST 2
+
+    std::map<std::string, double> products;
+    std::map<std::string, int> shoppingListBob;
+    std::map<std::string, int> shoppingListAlice;
+
+    products["Milk"] = 1.07;
+    products["Rice"] = 1.59;
+    products["Eggs"] = 3.14;
+    products["Cheese"] = 12.60;
+    products["Chicken Breast"] = 9.40;
+    products["Apples"] = 2.31;
+    products["Tomato"] = 2.58;
+    products["Potato"] = 1.75;
+    products["Onions"] = 1.10;
+
+    shoppingListBob["Milk"] = 3;
+    shoppingListBob["Rice"] = 2;
+    shoppingListBob["Eggs"] = 2;
+    shoppingListBob["Cheese"] = 1;
+    shoppingListBob["Chicken Breasts"] = 4;
+    shoppingListBob["Apples"] = 1;
+    shoppingListBob["Tomato"] = 2;
+    shoppingListBob["Potato"] = 1;
+
+    shoppingListAlice["Rice"] = 1;
+    shoppingListAlice["Eggs"] = 5;
+    shoppingListAlice["Chicken Breasts"] = 2;
+    shoppingListAlice["Apples"] = 1;
+    shoppingListAlice["Tomato"] = 10;
+
+    double totalSpendingBob = 0;
+    double totalSpendingAlice = 0;
+
+    std::map<std::string, double>::iterator itProducts;
+    std::map<std::string, int>::iterator itBob;
+    std::map<std::string, int>::iterator itAlice;
+
+    for (itProducts = products.begin(); itProducts != products.end(); itProducts++) {
+        for (itBob = shoppingListBob.begin(); itBob != shoppingListBob.end(); itBob++) {
+            if (itProducts->first == itBob->first) {
+                totalSpendingBob += itProducts->second * itBob->second;
+            }
+        }
+
+        for (itAlice = shoppingListAlice.begin(); itAlice != shoppingListAlice.end(); itAlice++) {
+            if (itProducts->first == itAlice->first) {
+                totalSpendingAlice += itProducts->second * itAlice->second;
+            }
+        }
+    }
+    std::cout << "Bob spends " << totalSpendingBob << " in total." << std::endl;
+    std::cout << "Alice spends " << totalSpendingAlice << " in total." << std::endl;
+
+    itAlice = shoppingListAlice.find("Rice");
+    itBob = shoppingListBob.find("Rice");
+    if (itBob != shoppingListBob.end()) {
+        if (itAlice != shoppingListAlice.end()) {
+            if (itBob->second > itAlice->second) {
+                std::cout << "Bob buys more rice than Alice." << std::endl;
+            } else if (itBob->second < itAlice->second) {
+                std::cout << "Alice buys more rice than Bob." << std::endl;
+            } else {
+                std::cout << "They both buy the same amount of rice." << std::endl;
+            }
+        } else {
+            std::cout << "Bob buys more rice than Alice." << std::endl;
+        }
+    }
+
+    itAlice = shoppingListAlice.find("Potato");
+    itBob = shoppingListBob.find("Potato");
+    if (itBob != shoppingListBob.end()) {
+        if (itAlice != shoppingListAlice.end()) {
+            if (itBob->second > itAlice->second) {
+                std::cout << "Bob buys more potato than Alice." << std::endl;
+            } else if (itBob->second < itAlice->second) {
+                std::cout << "Alice buys more potato than Bob." << std::endl;
+            } else {
+                std::cout << "They both buy the same amount of potato." << std::endl;
+            }
+        } else {
+            std::cout << "Bob buys more potato than Alice." << std::endl;
+        }
+    }
+
+    int totalNumberOfProductsBob = 0;
+    int totalNumberOfProductsAlice = 0;
+
+    for (itBob = shoppingListBob.begin(); itBob != shoppingListBob.end(); itBob++) {
+        totalNumberOfProductsBob += itBob->second;
+    }
+    for (itAlice = shoppingListAlice.begin(); itAlice != shoppingListAlice.end(); itAlice++) {
+        totalNumberOfProductsAlice += itAlice->second;
+    }
+
+    if (totalNumberOfProductsBob > totalNumberOfProductsAlice) {
+        std::cout << "Bob buys more pieces of products in total than Alice." << std::endl;
+    } else if (totalNumberOfProductsBob < totalNumberOfProductsAlice) {
+        std::cout << "Alice buys more pieces of products in total than Bob." << std::endl;
+    } else if (totalNumberOfProductsBob == totalNumberOfProductsAlice) {
+        std::cout << "They both buy the same number of products in total." << std::endl;
+    }
     return 0;
 }
 
