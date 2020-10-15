@@ -146,6 +146,22 @@ int main()
     std::cout << "The cheapest product is " << tempVectorForMap[0].first
               << "." << std::endl;
 
+    std::cout << "The products cheaper than 201 are: " << std::endl;
+    for (itProductDatabase = productDatabase.begin();
+         itProductDatabase != productDatabase.end(); itProductDatabase++) {
+        if (itProductDatabase->second < 201) {
+            std::cout << itProductDatabase->first << std::endl;
+        }
+    }
+
+    std::cout << "The products more expensive than 150 are: " << std::endl;
+    for (itProductDatabase = productDatabase.begin();
+         itProductDatabase != productDatabase.end(); itProductDatabase++) {
+        if (itProductDatabase->second > 150) {
+            std::cout << itProductDatabase->first << std::endl;
+        }
+    }
+
     return 0;
 }
 
