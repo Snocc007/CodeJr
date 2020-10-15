@@ -1,6 +1,9 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include <vector>
+
+int compareMapValues(std::pair<std::string, int> a, std::pair<std::string, int> b);
 
 int main()
 {
@@ -80,5 +83,73 @@ int main()
         std::cout << "We don't have bananas on the shopping list." << std::endl;
     }
 
+    // PRODUCT DATABASE
+
+    std::map<std::string, int> productDatabase;
+
+    productDatabase["Eggs"] = 200;
+    productDatabase["Milk"] = 200;
+    productDatabase["Fish"] = 400;
+    productDatabase["Apples"] = 150;
+    productDatabase["Bread"] = 50;
+    productDatabase["Chicken"] = 550;
+
+    std::map<std::string, int>::iterator itProductDatabase;
+
+    itProductDatabase = productDatabase.find("Fish");
+    std::cout << "The price of the fish is " << itProductDatabase->second << "." << std::endl;
+
+    std::vector<std::pair<std::string, int>> tempVectorForMap(productDatabase.begin(), productDatabase.end());
+    std::sort(tempVectorForMap.begin(), tempVectorForMap.end(), compareMapValues);
+    std::cout << "The most expensive product is " << tempVectorForMap[tempVectorForMap.size() - 1].first
+              << "." << std::endl;
+
+    int totalCost = 0;
+    for (itProductDatabase = productDatabase.begin();
+         itProductDatabase != productDatabase.end(); itProductDatabase++) {
+        totalCost += itProductDatabase->second;
+    }
+    std::cout << "The average price of the products is: " << totalCost / productDatabase.size() << "." << std::endl;
+
+    std::cout << "The products cheaper than 300 are: " << std::endl;
+    for (itProductDatabase = productDatabase.begin();
+         itProductDatabase != productDatabase.end(); itProductDatabase++) {
+        if (itProductDatabase->second < 300) {
+            std::cout << itProductDatabase->first << std::endl;
+        }
+    }
+    bool is125 = false;
+    tempVectorForMap.clear();
+    itProductDatabase = productDatabase.begin();
+    for (itProductDatabase = productDatabase.begin(); itProductDatabase != productDatabase.end();
+         itProductDatabase++) {
+        if (itProductDatabase->second == 125) {
+            tempVectorForMap.push_back(*itProductDatabase);
+            is125 = true;
+        }
+    }
+    if (is125) {
+        std::cout << "The product(s) available for exactly 125 is(are): " << std::endl;
+        for (int i = 0; i < tempVectorForMap.size(); i++) {
+            std::cout << tempVectorForMap[i].first << std::endl;
+        }
+
+    } else {
+        std::cout << "There's nothing available for exactly 125." << std::endl;
+    }
+    tempVectorForMap.clear();
+    for (itProductDatabase = productDatabase.begin(); itProductDatabase != productDatabase.end();
+         itProductDatabase++) {
+        tempVectorForMap.push_back(*itProductDatabase);
+    }
+    std::sort(tempVectorForMap.begin(), tempVectorForMap.end(), compareMapValues);
+    std::cout << "The cheapest product is " << tempVectorForMap[0].first
+              << "." << std::endl;
+
     return 0;
+}
+
+int compareMapValues(std::pair<std::string, int> a, std::pair<std::string, int> b)
+{
+    return a.second < b.second;
 }
