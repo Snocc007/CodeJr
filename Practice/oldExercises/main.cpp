@@ -10,6 +10,8 @@ std::vector<std::string> appendA(std::vector<std::string> input);
 
 std::vector<std::string> filter(std::vector<std::string> list, std::vector<std::string> sweets);
 
+std::string containsSeven(std::vector<int> input);
+
 int main()
 {
     // Solar system
@@ -78,6 +80,22 @@ int main()
     for (int i = 0; i < filteredList.size(); ++i) {
         std::cout << filteredList[i] << " ";
     }
+
+    std::cout << std::endl;
+
+    // Element finder
+
+    const std::vector<int> numbers = {1, 2, 3, 4, 5};
+    const std::vector<int> numbers2 = {6, 7, 8, 9, 10};
+
+    // Write a method that checks if the vector contains "7" if it contains return "Hoorray" otherwise return "Noooooo"
+
+    // Expected output: "Noooooo"
+    std::cout << containsSeven(numbers) << std::endl;
+
+    // Expected output: "Hoorray"
+    std::cout << containsSeven(numbers2) << std::endl;
+
 
     return 0;
 }
@@ -148,4 +166,23 @@ std::vector<std::string> filter(std::vector<std::string> list, std::vector<std::
     }
 
     return list;
+}
+
+std::string containsSeven(std::vector<int> input)
+{
+    bool ifHave = false;
+    std::string result;
+
+    for (int i = 0; i < input.size(); ++i) {
+        if (input[i] == 7) {
+            ifHave = true;
+        }
+    }
+    if (ifHave == true) {
+        result = "Hoorray";
+    } else {
+        result = "Noooooo";
+    }
+
+    return result;
 }
