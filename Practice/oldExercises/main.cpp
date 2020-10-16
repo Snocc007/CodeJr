@@ -14,9 +14,11 @@ std::string containsSeven(std::vector<int> input);
 
 bool checkNums(const std::vector<int> input, const std::vector<int> checker);
 
+std::vector<std::string> quoteSwap(std::vector<std::string> &input);
+
 int main()
 {
-    // Solar system
+    // SOLAR SYSTEM
 
     std::vector<std::string> planets = {"Mercury", "Venus", "Earth", "Mars", "Jupiter", "Uranus", "Neptune"};
 
@@ -33,7 +35,7 @@ int main()
 
     std::cout << std::endl;
 
-    //Match Making
+    //MATCH MAKING
 
     std::vector<std::string> girls = {"Eve", "Ashley", "Claire", "Kat", "Jane"};
     std::vector<std::string> boys = {"Joe", "Fred", "Tom", "Todd", "Neef", "Jeff"};
@@ -50,7 +52,7 @@ int main()
 
     std::cout << "Hello, World!" << std::endl;
 
-    // Append letter
+    // APPEND LETTER
 
     std::vector<std::string> animals = {"bo", "anacond", "koal", "pand", "zebr"};
 
@@ -65,7 +67,7 @@ int main()
 
     std::cout << std::endl;
 
-    // Candy Shop
+    // CANDY SHOP
 
     const std::vector<std::string> sweets = {"Cupcake", "Brownie"};
     std::vector<std::string> list = {"Cupcake", "Carrot", "Bread", "Brownie", "Lemon"};
@@ -85,7 +87,7 @@ int main()
 
     std::cout << std::endl;
 
-    // Element finder
+    // ELEMENT FINDER
 
     const std::vector<int> numbers = {1, 2, 3, 4, 5};
     const std::vector<int> numbers2 = {6, 7, 8, 9, 10};
@@ -98,7 +100,7 @@ int main()
     // Expected output: "Hoorray"
     std::cout << containsSeven(numbers2) << std::endl;
 
-    // Is in list
+    // IS IN LIST
 
     const std::vector<int> numbers3 = {2, 4, 6, 8, 10, 12, 14};
     const std::vector<int> numbers4 = {2, 4, 6, 8, 10, 12, 14, 16};
@@ -120,6 +122,27 @@ int main()
         std::cout << "The second vector contains all the numbers" << std::endl;
     } else {
         std::cout << "The second vector does not contain all the numbers" << std::endl;
+    }
+
+    // QUOTE SWAP
+
+    std::vector<std::string> quote = {"What", "I", "do", "create,", "I", "cannot", "not", "understand."};
+
+    // Accidentally I messed up this quote from Richard Feynman.
+    // Two words are out of place
+    // Your task is to fix it by swapping the right words with code
+    // Create a method called quoteSwap().
+
+    quoteSwap(quote);
+
+    // Also, print the sentence to the output with spaces in between.
+
+    for (int i = 0; i < quote.size(); ++i) {
+        if (i < quote.size()) {
+            std::cout << quote[i] << " ";
+        } else {
+            std::cout << quote[i] << "." << std::endl;
+        }
     }
 
 
@@ -230,4 +253,22 @@ bool checkNums(const std::vector<int> input, std::vector<int> checker)
     }
 
     return ifHaveAll;
+}
+
+std::vector<std::string> quoteSwap(std::vector<std::string> &input)
+{
+    std::string temp = "cannot";
+    for (int i = 0; i < input.size(); ++i) {
+
+        if (input[i] == "do") {
+            input[i] = temp;
+            temp = "do";
+            i++;
+        }
+        if (input[i] == "cannot") {
+            input[i] = temp;
+        }
+    }
+
+    return input;
 }
