@@ -6,6 +6,8 @@ std::vector<std::string> putSaturn(std::vector<std::string> listToCorrect);
 
 std::vector<std::string> makingMatches(const std::vector<std::string> &girls, const std::vector<std::string> &boys);
 
+std::vector<std::string> appendA(std::vector<std::string> input);
+
 int main()
 {
     // Solar system
@@ -41,6 +43,20 @@ int main()
     }
 
     std::cout << "Hello, World!" << std::endl;
+
+    // Append letter
+
+    std::vector<std::string> animals = {"bo", "anacond", "koal", "pand", "zebr"};
+
+    // Create a function called "appendA()" that adds "a" to every string in the "animals" list.
+    // The parameter should be a vector.
+
+    std::vector<std::string> newAnimals = appendA(animals);
+
+    for (int i = 0; i < newAnimals.size(); ++i) {
+        std::cout << newAnimals[i] << " ";
+    }
+
     return 0;
 }
 
@@ -78,4 +94,13 @@ std::vector<std::string> makingMatches(const std::vector<std::string> &girls, co
     }
 
     return result;
+}
+
+std::vector<std::string> appendA(std::vector<std::string> input)
+{
+    for (int i = 0; i < input.size(); ++i) {
+        input[i] += "a";
+    }
+
+    return input;
 }
