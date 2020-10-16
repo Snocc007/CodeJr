@@ -12,6 +12,8 @@ std::vector<std::string> filter(std::vector<std::string> list, std::vector<std::
 
 std::string containsSeven(std::vector<int> input);
 
+bool checkNums(const std::vector<int> input, const std::vector<int> checker);
+
 int main()
 {
     // Solar system
@@ -96,6 +98,30 @@ int main()
     // Expected output: "Hoorray"
     std::cout << containsSeven(numbers2) << std::endl;
 
+    // Is in list
+
+    const std::vector<int> numbers3 = {2, 4, 6, 8, 10, 12, 14};
+    const std::vector<int> numbers4 = {2, 4, 6, 8, 10, 12, 14, 16};
+    const std::vector<int> checker = {4, 8, 12, 16};
+
+    // Check if vector contains all of the following elements: 4,8,12,16
+    // Create a method that accepts vector as an input
+    // it should return "true" if it contains all, otherwise "false"
+
+    // Expected output: "The first vector does not contain all the numbers"
+    if (checkNums(numbers3, checker)) {
+        std::cout << "The first vector contains all the numbers" << std::endl;
+    } else {
+        std::cout << "The first vector does not contain all the numbers" << std::endl;
+    }
+
+    // Expected output: "The second vector contains all the numbers"
+    if (checkNums(numbers4, checker)) {
+        std::cout << "The second vector contains all the numbers" << std::endl;
+    } else {
+        std::cout << "The second vector does not contain all the numbers" << std::endl;
+    }
+
 
     return 0;
 }
@@ -145,7 +171,7 @@ std::vector<std::string> appendA(std::vector<std::string> input)
     return input;
 }
 
-std::vector<std::string> filter(std::vector<std::string> list, std::vector<std::string> sweets)
+std::vector<std::string> filter(std::vector<std::string> list, const std::vector<std::string> sweets)
 {
     bool ifHaveAMatch = false;
     std::string temp;
@@ -185,4 +211,23 @@ std::string containsSeven(std::vector<int> input)
     }
 
     return result;
+}
+
+bool checkNums(const std::vector<int> input, std::vector<int> checker)
+{
+    bool ifHaveAll = false;
+    int counter = 0;
+    for (int i = 0; i < input.size(); ++i) {
+        for (int j = 0; j < checker.size(); ++j) {
+            if (input[i] == checker[j]) {
+                counter++;
+            }
+        }
+    }
+
+    if (counter == 4) {
+        ifHaveAll = true;
+    }
+
+    return ifHaveAll;
 }
