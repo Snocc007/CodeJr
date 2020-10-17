@@ -22,6 +22,8 @@ getChildrenWithMoreThanFourCandies(const std::vector<std::pair<std::string, std:
 
 int sumOfAgeWithLessThanFiveCandies(const std::vector<std::pair<std::string, std::map<std::string, int>>> &students);
 
+void subStrList(std::string, std::vector<std::string>);
+
 int main()
 {
     // SOLAR SYSTEM
@@ -233,6 +235,21 @@ int main()
               << std::endl;
 
 
+    // SUB STR LIST
+
+    //  Create a function that takes a string and a vector of string as a parameter
+    //  Returns the index of the string in the vector where the first string is part of
+    //  Only need to find the first occurence and return the index of that
+    //  Returns `-1` if the string is not part any of the strings in the vector
+
+    //  Example:
+    std::vector<std::string> searchArr = {"this", "is", "what", "I'm", "searching"};
+    subStrList("ching", searchArr);
+    //  should print: `4`
+    subStrList("not", searchArr);
+    //  should print: `-1`
+
+
     return 0;
 }
 
@@ -390,4 +407,15 @@ int sumOfAgeWithLessThanFiveCandies(const std::vector<std::pair<std::string, std
         }
     }
     return result;
+}
+
+void subStrList(std::string subString, std::vector<std::string> vector)
+{
+    int index = -1;
+    for (int i = 0; i < vector.size(); ++i) {
+        if (vector[i].find(subString) != std::string::npos) {
+            index = i;
+        }
+    }
+    std::cout << index << std::endl;
 }
