@@ -2,6 +2,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <cmath>
 
 std::vector<std::string> putSaturn(std::vector<std::string> listToCorrect);
 
@@ -13,7 +14,7 @@ std::vector<std::string> filter(std::vector<std::string> list, std::vector<std::
 
 std::string containsSeven(std::vector<int> input);
 
-bool checkNums(const std::vector<int> input, const std::vector<int> checker);
+bool checkNums(std::vector<int> input, std::vector<int> checker);
 
 std::vector<std::string> quoteSwap(std::vector<std::string> &input);
 
@@ -25,6 +26,8 @@ int sumOfAgeWithLessThanFiveCandies(const std::vector<std::pair<std::string, std
 void subStrList(std::string, std::vector<std::string>);
 
 void josephusProblem();
+
+void armstrongNumber();
 
 int main()
 {
@@ -257,6 +260,9 @@ int main()
     // f(n) 	1	1	3	1	3	5	7	1	3	5	7	9	11	13	15	1
 
     josephusProblem();
+    std::cout << std::endl;
+
+    armstrongNumber();
 
 
     return 0;
@@ -452,4 +458,30 @@ void josephusProblem()
     }
 
     std::cout << "The 'winning' seat is No: " << result << std::endl;
+}
+
+void armstrongNumber()
+{
+    int input;
+    std::vector<int> digits;
+    std::cout << "Give me a number: " << std::endl;
+    std::cin >> input;
+    int inputTemp = input;
+
+    while (inputTemp) {
+        digits.push_back(inputTemp % 10);
+        inputTemp /= 10;
+    }
+
+    std::reverse(digits.begin(), digits.end());
+
+    int sumOfDigitsFactors = 0;
+    for (int i = 0; i < digits.size(); ++i) {
+        sumOfDigitsFactors += std::pow(digits[i], digits.size());
+    }
+    if (sumOfDigitsFactors == input) {
+        std::cout << "The '" << input << "' is an Armstrong number.";
+    } else {
+        std::cout << "The '" << input << "' is NOT an Armstrong number.";
+    }
 }
