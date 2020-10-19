@@ -67,5 +67,16 @@ int main()
 
     std::cout << "The value of age is: " << *agePtr << "." << std::endl;
 
+    // CHANGING VALUE
+
+    // Change the value of the variable called 'temperature' using a pointer
+    // (you have to create the pointer first)
+
+    float temperature = 21.3;
+    float *temperaturePtr = &temperature;
+    *temperaturePtr = 27.6;
+
+    std::cout << "The value of temperature is: " << *temperaturePtr << "." << std::endl;
+
     return 0;
 }
