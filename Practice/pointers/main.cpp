@@ -2,6 +2,7 @@
 
 int main()
 {
+    /*
     int number = 42;
 
     // prints the value stored by the variable called 'number'
@@ -37,6 +38,7 @@ int main()
     std::cout << "The value of agePtr is " << agePtr << std::endl;
 
     std::cout << "Hello, World!" << std::endl;
+    */
 
     // POINTER TYPE
 
@@ -54,6 +56,16 @@ int main()
     std::cout << "The memory address of " << a << " is " << aPtr << "." << std::endl;
     std::cout << "The memory address of " << b << " is " << bPtr << "." << std::endl;
     std::cout << "The memory address of " << name << " is " << namePtr << "." << std::endl;
+
+    // POINTER VALUE
+
+    // Print out the value of the variable called 'age' using a pointer
+    // (you have to create the pointer first)
+
+    int age = 31;
+    int *agePtr = &age;
+
+    std::cout << "The value of age is: " << *agePtr << "." << std::endl;
 
     return 0;
 }
