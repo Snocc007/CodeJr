@@ -78,5 +78,17 @@ int main()
 
     std::cout << "The value of temperature is: " << *temperaturePtr << "." << std::endl;
 
+    // ADDING
+
+    // Add two numbers using pointers
+
+    int A = 20;
+    int B = 17;
+
+    int *APtr = &A;
+    int *BPtr = &B;
+
+    std::cout << "The sum of the two numbers is: " << *APtr + *BPtr << "." << std::endl;
+
     return 0;
 }
