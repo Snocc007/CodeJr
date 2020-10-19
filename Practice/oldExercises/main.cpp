@@ -24,6 +24,8 @@ int sumOfAgeWithLessThanFiveCandies(const std::vector<std::pair<std::string, std
 
 void subStrList(std::string, std::vector<std::string>);
 
+void josephusProblem();
+
 int main()
 {
     // SOLAR SYSTEM
@@ -249,6 +251,13 @@ int main()
     subStrList("not", searchArr);
     //  should print: `-1`
 
+    // JOSEPHUS PROBLEM
+
+    // n	    1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16
+    // f(n) 	1	1	3	1	3	5	7	1	3	5	7	9	11	13	15	1
+
+    josephusProblem();
+
 
     return 0;
 }
@@ -352,7 +361,7 @@ bool checkNums(const std::vector<int> input, std::vector<int> checker)
         }
     }
 
-    if (counter == 4) {
+    if (counter == 6) {
         ifHaveAll = true;
     }
 
@@ -418,4 +427,29 @@ void subStrList(std::string subString, std::vector<std::string> vector)
         }
     }
     std::cout << index << std::endl;
+}
+
+// n	    1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16
+// f(n) 	1	1	3	1	3	5	7	1	3	5	7	9	11	13	15	1
+
+void josephusProblem()
+{
+    int numberOfPlayers;
+    std::cout << "How many people are in the 'game'?" << std::endl;
+    std::cin >> numberOfPlayers;
+    int result;
+    int nextComing2Fact = numberOfPlayers;
+    int counter;
+
+    while (!((nextComing2Fact != 0) && ((nextComing2Fact & (nextComing2Fact - 1)) == 0))) {
+        nextComing2Fact -= 1;
+    }
+    counter = numberOfPlayers - nextComing2Fact;
+    result = 1 + counter * 2;
+
+    if (((numberOfPlayers != 0) && ((numberOfPlayers & (numberOfPlayers - 1)) == 0))) {
+        result = 1;
+    }
+
+    std::cout << "The 'winning' seat is No: " << result << std::endl;
 }
