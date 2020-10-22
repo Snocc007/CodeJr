@@ -99,8 +99,8 @@ int main()
     // Create a function which takes an array (and its length) as a parameter
     // and returns a pointer to its minimum value
 
-    int numbers[] = {12, 4, 66, 101, 87, 3, 15};
-    std::cout << *findMinimum(numbers, 7) << std::endl;
+    int numberS[] = {12, 4, 66, 101, 87, 3, 15};
+    std::cout << *findMinimum(numberS, 7) << std::endl;
 
     // SWAP
 
@@ -114,6 +114,53 @@ int main()
     std::cout << "After swapping 'aa' = " << aa << "." << std::endl;
     std::cout << "After swapping 'bb' = " << bb << "." << std::endl;
 
+    int numbers[] = {12, 42, 33};
+    int *numbersPtr = numbers;
+
+    // prints out the memory addresses
+    for (int i = 0; i < sizeof(numbers) / sizeof(numbers[0]); i++) {
+        std::cout << numbers + i << std::endl;
+    }
+
+    // prints out the memory addresses
+    for (int i = 0; i < sizeof(numbers) / sizeof(numbers[0]); i++) {
+        std::cout << numbersPtr + i << std::endl;
+    }
+
+    // prints out the values
+    for (int i = 0; i < sizeof(numbers) / sizeof(numbers[0]); i++) {
+        std::cout << numbers[i] << std::endl;
+    }
+
+    // prints out the values
+    for (int i = 0; i < sizeof(numbers) / sizeof(numbers[0]); i++) {
+        std::cout << numbersPtr[i] << std::endl;
+    }
+
+    // prints out the values
+    for (int i = 0; i < sizeof(numbers) / sizeof(numbers[0]); i++) {
+        std::cout << *(numbersPtr + i) << std::endl;
+    }
+
+    // prints out the values
+    for (int i = 0; i < sizeof(numbers) / sizeof(numbers[0]); i++) {
+        std::cout << *(numbers + i) << std::endl;
+    }
+
+    // PRINT ADDRESSES
+
+    // Create a program which accepts five integers from the console (given by the user)
+    // and store them in an array
+    // print out the memory addresses of the elements in the array
+
+    int arr[5];
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "Give me an integer number:" << std::endl;
+        std::cin >> arr[i];
+    }
+    for (int i = 0; i < 5; ++i) {
+        std::cout << arr + i << std::endl;
+    }
 
     return 0;
 }
