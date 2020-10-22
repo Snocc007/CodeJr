@@ -1,5 +1,7 @@
 #include <iostream>
 
+int *findMinimum(int array[], int size);
+
 int main()
 {
     /*
@@ -90,5 +92,27 @@ int main()
 
     std::cout << "The sum of the two numbers is: " << *APtr + *BPtr << "." << std::endl;
 
+    // FIND MINIMUM
+
+    // Create a function which takes an array (and its length) as a parameter
+    // and returns a pointer to its minimum value
+
+    int numbers[] = {12, 4, 66, 101, 87, 3, 15};
+    std::cout << *findMinimum(numbers, 7) << std::endl;
+
     return 0;
+}
+
+int *findMinimum(int array[], int size)
+{
+    int minimum = array[0];
+
+    for (int i = 0; i < size; ++i) {
+        if (array[i] < minimum) {
+            minimum = array[i];
+        }
+    }
+    int *ptr = &minimum;
+
+    return ptr;
 }
