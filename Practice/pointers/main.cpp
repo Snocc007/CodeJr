@@ -2,6 +2,8 @@
 
 int *findMinimum(int array[], int size);
 
+void swap(int *a, int *b);
+
 int main()
 {
     /*
@@ -100,6 +102,19 @@ int main()
     int numbers[] = {12, 4, 66, 101, 87, 3, 15};
     std::cout << *findMinimum(numbers, 7) << std::endl;
 
+    // SWAP
+
+    // Create a function which swaps the values of 'a' and 'b' variables.
+    // This time use a void function and pointers.
+
+    int aa = 10;
+    int bb = 316;
+    swap(&aa, &bb);
+
+    std::cout << "After swapping 'aa' = " << aa << "." << std::endl;
+    std::cout << "After swapping 'bb' = " << bb << "." << std::endl;
+
+
     return 0;
 }
 
@@ -115,4 +130,12 @@ int *findMinimum(int array[], int size)
     int *ptr = &minimum;
 
     return ptr;
+}
+
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+
 }
