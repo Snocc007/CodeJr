@@ -1,12 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 void divide(double number);
 
 void printEachLine();
 
 int countLines();
+
+void writeSingleLine();
 
 int main()
 {
@@ -17,6 +20,8 @@ int main()
     printEachLine();
 
     std::cout << countLines() << std::endl;
+
+    writeSingleLine();
 
     return 0;
 }
@@ -78,4 +83,24 @@ int countLines()
     myFile.close();
 
     return counter;
+}
+
+void writeSingleLine()
+{
+    std::ofstream myFile;
+
+    try {
+        myFile.open("my-file-to-write.txt");
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        std::string text;
+        std::cout << "Give me your name: " << std::endl;
+        std::getline(std::cin, text);
+        myFile << text;
+        myFile.close();
+
+    } catch (int x) {
+        std::cout << "Couldn't open file." << std::endl;
+    }
 }
