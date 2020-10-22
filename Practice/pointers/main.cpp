@@ -4,6 +4,8 @@ int *findMinimum(int array[], int size);
 
 void swap(int *a, int *b);
 
+int lookForValue(int arr[], int size, int number);
+
 int main()
 {
     /*
@@ -172,6 +174,14 @@ int main()
         std::cout << *(arr + i) << std::endl;
     }
 
+    // LOOK FOR VALUE
+
+    // Create a function which takes an array (and it's lenght) and a number as a parameter
+    // the function should return index where it found the given value
+    // if it can't find the number return -1
+
+    std::cout << lookForValue(arr, 5, 6);
+
     return 0;
 }
 
@@ -195,4 +205,22 @@ void swap(int *a, int *b)
     *a = *b;
     *b = temp;
 
+}
+
+int lookForValue(int arr[], int size, int number)
+{
+    bool ifFound = false;
+    int index;
+
+    for (int i = 0; i < size; ++i) {
+        if (number == arr[i]) {
+            index = i;
+            ifFound = true;
+        }
+    }
+    if (ifFound) {
+        return index;
+    } else {
+        return -1;
+    }
 }
