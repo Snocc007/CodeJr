@@ -11,6 +11,8 @@ int countLines();
 
 void writeSingleLine();
 
+bool copyFile(std::string copyFrom, std::string copyTo);
+
 int main()
 {
     divide(0);
@@ -22,6 +24,8 @@ int main()
     std::cout << countLines() << std::endl;
 
     writeSingleLine();
+
+    std::cout << copyFile("my-file.txt", "my-copied-file.txt") << std::endl;
 
     return 0;
 }
@@ -103,4 +107,34 @@ void writeSingleLine()
     } catch (int x) {
         std::cout << "Couldn't open file." << std::endl;
     }
+}
+
+bool copyFile(std::string copyFrom, std::string copyTo)
+{
+    std::ifstream srcFile;
+    std::ofstream destFile;
+    bool copied;
+
+    try {
+        srcFile.open(copyFrom);
+        destFile.open(copyTo);
+        if (!srcFile.is_open() || !destFile.is_open()) {
+            throw 0;
+        }
+        std::string text;
+
+        while (!srcFile.eof()) {
+            getline(srcFile, text);
+            destFile << text + "\n";
+        }
+        copied = true;
+    } catch (int x) {
+        std::cout << "Couldn't open file(s)." << std::endl;
+        copied = false;
+    }
+
+    srcFile.close();
+    destFile.close();
+
+    return copied;
 }
