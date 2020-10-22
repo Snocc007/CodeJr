@@ -162,6 +162,16 @@ int main()
         std::cout << arr + i << std::endl;
     }
 
+    // FIVE NUMBERS
+
+    // Create a program which accepts five integers from the console (given by the user)
+    // and store them in an array
+    // print out the values of that array using pointers again
+
+    for (int i = 0; i < 5; ++i) {
+        std::cout << *(arr + i) << std::endl;
+    }
+
     return 0;
 }
 
