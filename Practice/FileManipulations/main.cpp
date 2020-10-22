@@ -6,6 +6,8 @@ void divide(double number);
 
 void printEachLine();
 
+int countLines();
+
 int main()
 {
     divide(0);
@@ -13,6 +15,8 @@ int main()
     std::cout << "Hello, World!" << std::endl;
 
     printEachLine();
+
+    std::cout << countLines() << std::endl;
 
     return 0;
 }
@@ -41,7 +45,7 @@ void printEachLine()
         }
         std::string text;
 
-        while (myFile) {
+        while (!myFile.eof()) {
             getline(myFile, text);
             std::cout << text << std::endl;
         }
@@ -50,4 +54,28 @@ void printEachLine()
     }
 
     myFile.close();
+}
+
+int countLines()
+{
+    std::ifstream myFile;
+    int counter = 0;
+    try {
+        myFile.open("my-file.txt");
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        std::string text;
+
+        while (!myFile.eof()) {
+            getline(myFile, text);
+            counter++;
+        }
+    } catch (int x) {
+        counter = 0;
+    }
+
+    myFile.close();
+
+    return counter;
 }
