@@ -6,6 +6,8 @@ void swap(int *a, int *b);
 
 int lookForValue(int arr[], int size, int number);
 
+void lookForMaximum();
+
 int main()
 {
     /*
@@ -182,6 +184,15 @@ int main()
 
     std::cout << lookForValue(arr, 5, 6);
 
+    // LOOK FOR MAXIMUM
+
+    // Create a program which first asks for a number
+    // this number indicates how many integers we want to store in an array
+    // and than asks for numbers till the user fills the array
+    // It should print out the biggest number in the given array and the memory address of it
+
+    lookForMaximum();
+
     return 0;
 }
 
@@ -223,4 +234,25 @@ int lookForValue(int arr[], int size, int number)
     } else {
         return -1;
     }
+}
+
+void lookForMaximum()
+{
+    int size;
+    int array[size];
+    std::cout << "How many numbers you would like to store?" << std::endl;
+    std::cin >> size;
+    for (int i = 0; i < size; ++i) {
+        std::cout << "Give me an integer number: " << std::endl;
+        std::cin >> array[i];
+    }
+    int maximum = array[0];
+    for (int i = 0; i < size; ++i) {
+        if (array[i] > maximum) {
+            maximum = array[i];
+        }
+    }
+
+    std::cout << "The biggest number is: " << maximum << ", and its memory address is: " << &maximum << "."
+              << std::endl;
 }
