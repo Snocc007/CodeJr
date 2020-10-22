@@ -193,6 +193,27 @@ int main()
 
     lookForMaximum();
 
+    // COMPARING POINTERS
+
+    std::string aaa = "Bob";
+    std::string bbb = "Bob";
+
+    std::string *aaaPtr = &aaa;
+    std::string *bbbPtr = &bbb;
+    std::string *ptr = &aaa;
+
+    // false
+    std::cout << (aaaPtr == bbbPtr) << std::endl;
+
+    // true
+    std::cout << (aaaPtr == ptr) << std::endl;
+
+    //true
+    std::cout << (*aPtr == *bPtr) << std::endl;
+
+    // true
+    std::cout << (*aaaPtr == *ptr) << std::endl;
+
     return 0;
 }
 
