@@ -13,22 +13,40 @@ void writeSingleLine();
 
 bool copyFile(std::string copyFrom, std::string copyTo);
 
+void reverseLines(std::string fileName);
+
 int main()
 {
+    // DIVIDE BY ZERO WITH EXCEPTION
+
     divide(0);
 
     std::cout << "Hello, World!" << std::endl;
 
+    // PRINT EACH LINE
+
     printEachLine();
+
+    // COUNT LINES
 
     std::cout << countLines() << std::endl;
 
+    // WRITE SINGLE LINE
+
     writeSingleLine();
+
+    // COPY FILE
 
     std::cout << copyFile("my-file.txt", "my-copied-file.txt") << std::endl;
 
+    // REVERSE LINES
+
+    reverseLines("reversed-lines.txt");
+
     return 0;
 }
+
+// DIVIDE BY ZERO WITH EXCEPTION
 
 void divide(double number)
 {
@@ -43,12 +61,14 @@ void divide(double number)
     }
 }
 
+// PRINT EACH LINE
+
 void printEachLine()
 {
     std::ifstream myFile;
 
     try {
-        myFile.open("my-file.txt");
+        myFile.open("my-text.txt");
         if (!myFile.is_open()) {
             throw 0;
         }
@@ -64,6 +84,8 @@ void printEachLine()
 
     myFile.close();
 }
+
+// COUNT LINES
 
 int countLines()
 {
@@ -89,6 +111,8 @@ int countLines()
     return counter;
 }
 
+// WRITE SINGLE LINE
+
 void writeSingleLine()
 {
     std::ofstream myFile;
@@ -108,6 +132,8 @@ void writeSingleLine()
         std::cout << "Couldn't open file." << std::endl;
     }
 }
+
+// COPY FILE
 
 bool copyFile(std::string copyFrom, std::string copyTo)
 {
@@ -137,4 +163,27 @@ bool copyFile(std::string copyFrom, std::string copyTo)
     destFile.close();
 
     return copied;
+}
+
+// REVERSE LINES
+
+void reverseLines(std::string fileName)
+{
+    std::ifstream myFile;
+    std::string text;
+
+    myFile.open(fileName);
+
+    try {
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        while (!myFile.eof()) {
+            getline(myFile, text);
+            std::reverse(text.begin(), text.end());
+            std::cout << text << std::endl;
+        }
+    } catch (int x) {
+        std::cout << "Couldn't open file" << std::endl;
+    }
 }
