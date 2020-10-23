@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <vector>
 
 void divide(double number);
 
@@ -16,6 +17,8 @@ bool copyFile(std::string copyFrom, std::string copyTo);
 void reverseLines(std::string fileName);
 
 void doubled(std::string fileName);
+
+void reversedOrder(std::string fileName);
 
 int main()
 {
@@ -50,6 +53,13 @@ int main()
 
     doubled("duplicated-chars.txt");
     std::cout << std::endl;
+
+    // REVERSED ORDER
+
+    reversedOrder("reversed-order.txt");
+    std::cout << std::endl;
+
+
 
     return 0;
 }
@@ -221,6 +231,34 @@ void doubled(std::string fileName)
             }
             std::cout << correctedLine << std::endl;
             correctedLine.clear();
+        }
+    } catch (int x) {
+        std::cout << "Couldn't open file" << std::endl;
+    }
+}
+
+// REVERSED ORDER
+
+void reversedOrder(std::string fileName)
+{
+    std::ifstream myFile;
+    std::string line;
+    std::vector<std::string> lines;
+
+    myFile.open(fileName);
+
+    try {
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        while (!myFile.eof()) {
+            getline(myFile, line);
+            lines.push_back(line);
+        }
+        std::reverse(lines.begin(), lines.end());
+
+        for (int i = 0; i < lines.size(); ++i) {
+            std::cout << lines[i] << std::endl;
         }
     } catch (int x) {
         std::cout << "Couldn't open file" << std::endl;
