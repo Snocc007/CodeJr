@@ -15,6 +15,8 @@ bool copyFile(std::string copyFrom, std::string copyTo);
 
 void reverseLines(std::string fileName);
 
+void doubled(std::string fileName);
+
 int main()
 {
     // DIVIDE BY ZERO WITH EXCEPTION
@@ -42,6 +44,12 @@ int main()
     // REVERSE LINES
 
     reverseLines("reversed-lines.txt");
+    std::cout << std::endl;
+
+    // DOUBLED
+
+    doubled("duplicated-chars.txt");
+    std::cout << std::endl;
 
     return 0;
 }
@@ -182,6 +190,37 @@ void reverseLines(std::string fileName)
             getline(myFile, text);
             std::reverse(text.begin(), text.end());
             std::cout << text << std::endl;
+        }
+    } catch (int x) {
+        std::cout << "Couldn't open file" << std::endl;
+    }
+}
+
+// DOUBLED
+
+void doubled(std::string fileName)
+{
+    std::ifstream myFile;
+    std::string line;
+    std::string correctedLine;
+    int lenghtOfText;
+
+    myFile.open(fileName);
+
+    try {
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        while (!myFile.eof()) {
+            getline(myFile, line);
+            lenghtOfText = line.length();
+            for (int i = 0; i < lenghtOfText; ++i) {
+                if (i % 2 == 0) {
+                    correctedLine.push_back(line[i]);
+                }
+            }
+            std::cout << correctedLine << std::endl;
+            correctedLine.clear();
         }
     } catch (int x) {
         std::cout << "Couldn't open file" << std::endl;
