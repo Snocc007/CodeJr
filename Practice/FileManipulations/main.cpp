@@ -20,6 +20,13 @@ void doubled(std::string fileName);
 
 void reversedOrder(std::string fileName);
 
+<<<<<<< HEAD
+=======
+std::vector<std::string> uniqueIPs(std::string fileName);
+
+double getPostRatio(std::string fileName);
+
+>>>>>>> c1c4770... Logs done
 int main()
 {
     // DIVIDE BY ZERO WITH EXCEPTION
@@ -38,7 +45,7 @@ int main()
 
     // WRITE SINGLE LINE
 
-    writeSingleLine();
+    //  writeSingleLine();
 
     // COPY FILE
 
@@ -59,7 +66,19 @@ int main()
     reversedOrder("reversed-order.txt");
     std::cout << std::endl;
 
+<<<<<<< HEAD
 
+=======
+    // LOGS
+
+    std::vector<std::string> result = uniqueIPs("log.txt");
+    for (int i = 0; i < result.size(); ++i) {
+        std::cout << result[i] << std::endl;
+
+    }
+
+    std::cout << "The GETS and POSTS ratio is: " << getPostRatio("log.txt") << std::endl;
+>>>>>>> c1c4770... Logs done
 
     return 0;
 }
@@ -263,4 +282,79 @@ void reversedOrder(std::string fileName)
     } catch (int x) {
         std::cout << "Couldn't open file" << std::endl;
     }
+<<<<<<< HEAD
+=======
+}
+
+// LOGS
+
+std::vector<std::string> uniqueIPs(std::string fileName)
+{
+    std::ifstream myFile;
+    std::vector<std::string> uniqueIPs;
+
+    myFile.open(fileName);
+
+    try {
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        std::vector<std::string> tempVec;
+        std::string IPs;
+        std::string line;
+        char delimiter = '.';
+        int delPos;
+
+        while (!myFile.eof()) {
+            std::getline(myFile, line);
+            delPos = line.find_first_of(delimiter);
+            IPs = line.substr(delPos - 2, 11);
+            tempVec.push_back(IPs);
+        }
+        std::sort(tempVec.begin(), tempVec.end());
+        for (int i = 0; i < tempVec.size(); i++) {
+            if (tempVec[i] != tempVec[i + 1]) {
+                uniqueIPs.push_back(tempVec[i]);
+            }
+        }
+    } catch (int x) {
+        std::cout << "Couldn't open file" << std::endl;
+    }
+    return uniqueIPs;
+}
+
+double getPostRatio(std::string fileName)
+{
+
+    std::ifstream myFile;
+    double gets = 0;
+    double posts = 0;
+    myFile.open(fileName);
+
+    try {
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        std::vector<std::string> tempVec;
+        std::string line;
+
+        char delimiter = '.';
+        int delPos;
+
+        while (!myFile.eof()) {
+            std::getline(myFile, line);
+            delPos = line.find_last_of(delimiter);
+            if (line.substr(delPos + 6, 1) == "P") {
+                posts++;
+            } else if (line.substr(delPos + 6, 1) == "G") {
+                gets++;
+            }
+        }
+
+    } catch (int x) {
+        std::cout << "Couldn't open file" << std::endl;
+    }
+
+    return gets / posts;
+>>>>>>> c1c4770... Logs done
 }
