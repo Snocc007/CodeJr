@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <sstream>
 #include <vector>
 
 void divide(double number);
@@ -25,6 +24,8 @@ std::vector<std::string> uniqueIPs(std::string fileName);
 double getPostRatio(std::string fileName);
 
 std::string ticTacResult(std::string fileName);
+
+void encodedLines(std::string fileName);
 
 int main()
 {
@@ -90,6 +91,11 @@ int main()
 
     std::cout << ticTacResult("draw.txt") << std::endl;
     // should print draw
+
+    // ENCODED LINES
+
+    std::cout << std::endl;
+    encodedLines("encoded-lines.txt");
 
     return 0;
 }
@@ -496,4 +502,30 @@ std::string ticTacResult(std::string fileName)
     }
 
     return result;
+}
+
+// ENCODED LINES
+
+void encodedLines(std::string fileName)
+{
+    std::ifstream myFile;
+    std::string line;
+    int characterAscii;
+    myFile.open(fileName);
+    try {
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        while (!myFile.eof()) {
+            getline(myFile, line);
+            for (int i = 0; i < line.length(); ++i) {
+                characterAscii = line[i];
+                line[i] = characterAscii - 1;
+            }
+            std::cout << line << std::endl;
+        }
+    }
+    catch (int x) {
+        std::cout << "Couldn't open file." << std::endl;
+    }
 }
