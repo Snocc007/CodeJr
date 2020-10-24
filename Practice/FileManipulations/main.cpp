@@ -20,13 +20,12 @@ void doubled(std::string fileName);
 
 void reversedOrder(std::string fileName);
 
-<<<<<<< HEAD
-=======
 std::vector<std::string> uniqueIPs(std::string fileName);
 
 double getPostRatio(std::string fileName);
 
->>>>>>> c1c4770... Logs done
+std::string ticTacResult(std::string fileName);
+
 int main()
 {
     // DIVIDE BY ZERO WITH EXCEPTION
@@ -66,9 +65,6 @@ int main()
     reversedOrder("reversed-order.txt");
     std::cout << std::endl;
 
-<<<<<<< HEAD
-
-=======
     // LOGS
 
     std::vector<std::string> result = uniqueIPs("log.txt");
@@ -78,7 +74,22 @@ int main()
     }
 
     std::cout << "The GETS and POSTS ratio is: " << getPostRatio("log.txt") << std::endl;
->>>>>>> c1c4770... Logs done
+
+    // TIC TAC TOE
+
+    // Write a function that takes a filename as string,
+    // open and read it. The file data represents a tic-tac-toe
+    // game result. Return 'X'/'O'/'draw' based on which player
+    // has winning situation.
+
+    std::cout << ticTacResult("win-o.txt") << std::endl;
+    // should print O
+
+    std::cout << ticTacResult("win-x.txt") << std::endl;
+    // should print X
+
+    std::cout << ticTacResult("draw.txt") << std::endl;
+    // should print draw
 
     return 0;
 }
@@ -282,8 +293,6 @@ void reversedOrder(std::string fileName)
     } catch (int x) {
         std::cout << "Couldn't open file" << std::endl;
     }
-<<<<<<< HEAD
-=======
 }
 
 // LOGS
@@ -356,5 +365,135 @@ double getPostRatio(std::string fileName)
     }
 
     return gets / posts;
->>>>>>> c1c4770... Logs done
+}
+
+// TIC TAC TOE
+
+std::string ticTacResult(std::string fileName)
+{
+    std::string result = "draw";
+    std::ifstream myFile;
+    myFile.open(fileName);
+    char board[3][3];
+    int countX = 0;
+    int countO = 0;
+    try {
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        // int i = 0;
+
+        std::string row;
+        std::string board;
+        while (!myFile.eof()) {
+            getline(myFile, row);
+            board += row;
+        }
+        int i = 0;
+        while (i <= 6) {
+            if (i == 0) {
+                for (int j = 0; j < 3; ++j) {
+                    for (int k = j; k < 9;) {
+                        if (board[i + k] == 'O') {
+                            countO++;
+                        } else if (board[i + k] == 'X') {
+                            countX++;
+                        }
+                        k += 3;
+                    }
+                    if (countO == 3) {
+                        result = "O";
+                        break;
+                    } else if (countX == 3) {
+                        result = "X";
+                        break;
+                    } else {
+                        countX = countO = 0;
+                    }
+                }
+                for (int j = 0; j < 9;) {
+                    if (board[i + j] == 'O') {
+                        countO++;
+                    } else if (board[i + j] == 'X') {
+                        countX++;
+                    }
+                    j += 4;
+                }
+
+
+                if (countO == 3) {
+                    result = "O";
+                    break;
+                } else if (countX == 3) {
+                    result = "X";
+                    break;
+                } else {
+                    countX = countO = 0;
+                }
+            }
+            if (i % 3 == 0) {
+                for (int j = 0; j < 3; j++) {
+                    if (board[i + j] == 'O') {
+                        countO++;
+                    } else if (board[i + j] == 'X') {
+                        countX++;
+                    }
+                }
+                if (countO == 3) {
+                    result = "O";
+                    break;
+                } else if (countX == 3) {
+                    result = "X";
+                    break;
+                } else {
+                    countX = countO = 0;
+                }
+            } else if (i == 2) {
+                for (int j = i; j < 7;) {
+                    if (board[j] == 'O') {
+                        countO++;
+                    } else if (board[j] == 'X') {
+                        countX++;
+                    }
+                    j += 2;
+                }
+                if (countO == 3) {
+                    result = "O";
+                    break;
+                } else if (countX == 3) {
+                    result = "X";
+                    break;
+                } else {
+                    countX = countO = 0;
+                }
+            } else if (i == 0) {
+                for (int j = i; j < 7;) {
+                    if (board[j] == 'O') {
+                        countO++;
+                    } else if (board[j] == 'X') {
+                        countX++;
+                    }
+                    j += 4;
+                }
+                if (countO == 3) {
+                    result = "O";
+                    break;
+                } else if (countX == 3) {
+                    result = "X";
+                    break;
+                } else {
+                    countX = countO = 0;
+                }
+            }
+            i++;
+        }
+
+    }
+
+    catch (int
+           x) {
+        std::cout << "Couldn't open file" << std::endl;
+    }
+
+    return result;
 }
