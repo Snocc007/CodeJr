@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <map>
 
 void divide(double number);
 
@@ -97,6 +98,10 @@ int main()
     std::cout << std::endl;
     encodedLines("encoded-lines.txt");
 
+    // LOTTERY
+
+    mostCommonNumbers("lottery.txt");
+
     return 0;
 }
 
@@ -185,6 +190,7 @@ void writeSingleLine()
     } catch (int x) {
         std::cout << "Couldn't open file." << std::endl;
     }
+    myFile.close();
 }
 
 // COPY FILE
@@ -240,6 +246,7 @@ void reverseLines(std::string fileName)
     } catch (int x) {
         std::cout << "Couldn't open file" << std::endl;
     }
+    myFile.close();
 }
 
 // DOUBLED
@@ -271,6 +278,7 @@ void doubled(std::string fileName)
     } catch (int x) {
         std::cout << "Couldn't open file" << std::endl;
     }
+    myFile.close();
 }
 
 // REVERSED ORDER
@@ -299,6 +307,7 @@ void reversedOrder(std::string fileName)
     } catch (int x) {
         std::cout << "Couldn't open file" << std::endl;
     }
+    myFile.close();
 }
 
 // LOGS
@@ -369,7 +378,7 @@ double getPostRatio(std::string fileName)
     } catch (int x) {
         std::cout << "Couldn't open file" << std::endl;
     }
-
+    myFile.close();
     return gets / posts;
 }
 
@@ -500,7 +509,7 @@ std::string ticTacResult(std::string fileName)
            x) {
         std::cout << "Couldn't open file" << std::endl;
     }
-
+    myFile.close();
     return result;
 }
 
@@ -528,4 +537,5 @@ void encodedLines(std::string fileName)
     catch (int x) {
         std::cout << "Couldn't open file." << std::endl;
     }
+    myFile.close();
 }
