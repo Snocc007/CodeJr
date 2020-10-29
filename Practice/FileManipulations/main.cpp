@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <sstream>
 
 void divide(double number);
 
@@ -23,6 +24,12 @@ void reversedOrder(std::string fileName);
 std::vector<std::string> uniqueIPs(std::string fileName);
 
 double getPostRatio(std::string fileName);
+
+void mostCommonNumbers(std::string fileName);
+
+int compareMapValues(std::pair<int, int> a, std::pair<int, int> b);
+
+void sort(std::map<int, int> &M);
 
 std::string ticTacResult(std::string fileName);
 
@@ -538,4 +545,88 @@ void encodedLines(std::string fileName)
         std::cout << "Couldn't open file." << std::endl;
     }
     myFile.close();
+}
+
+void mostCommonNumbers(std::string fileName)
+{
+    std::ifstream myFile;
+    std::string numbers;
+    std::string line;
+    std::string temp;
+
+    std::vector<int> intVec;
+    // std::vector<std::string> strVec;
+    std::map<int, int> winningNumbers;
+    std::map<int, int>::iterator itMap;
+
+    myFile.open(fileName);
+    try {
+        if (!myFile.is_open()) {
+            throw 0;
+        }
+        while (!myFile.eof()) {
+            getline(myFile, line);
+            numbers = line.substr(line.find_last_of("Ft") + 2, 14);
+            std::stringstream ss(numbers);
+            while (ss) {
+                std::getline(ss, temp, ';');
+                intVec.push_back(std::stoi(temp));
+            }
+            intVec.pop_back();
+
+            ss.str("");
+
+            for (int i = 0; i < intVec.size(); ++i) {
+                itMap = winningNumbers.find(intVec[i]);
+                if (itMap != winningNumbers.end()) {
+                    itMap->second++;
+                }
+                winningNumbers.emplace(intVec[i], 0).first;
+            }
+            intVec.clear();
+        }
+
+        for (auto it = winningNumbers.begin(); it != winningNumbers.end(); it++) {
+            std::cout << it->first << " - " << it->second << std::endl;
+        }
+        std::vector<std::pair<int, int>> tempVectorForMap(winningNumbers.begin(), winningNumbers.end());
+        std::sort(tempVectorForMap.begin(), tempVectorForMap.end(), compareMapValues);
+        std::cout << "The 5 most common lottery numbers are: " <<
+                  tempVectorForMap[tempVectorForMap.size() - 1].first << ", " <<
+                  tempVectorForMap[tempVectorForMap.size() - 2].first << ", " <<
+                  tempVectorForMap[tempVectorForMap.size() - 3].first << ", " <<
+                  tempVectorForMap[tempVectorForMap.size() - 4].first << " and " <<
+                  tempVectorForMap[tempVectorForMap.size() - 5].first << "." << std::endl;
+    }
+
+    catch (int x) {
+        std::cout << "Couldn't open file." << std::endl;
+    }
+    myFile.close();
+
+}
+
+int compareMapValues(std::pair<int, int> a, std::pair<int, int> b)
+{
+    return a.second < b.second;
+}
+
+void sort(std::map<int, int> &M)
+{
+
+    // Declare a multimap
+    std::multimap<int, int> MM;
+
+    // Insert every (key-value) pairs from
+    // map M to multimap MM as (value-key)
+    // pairs
+    for (auto &it : M) {
+        MM.insert({it.second, it.first});
+    }
+
+    // Print the multimap
+    for (auto &it : MM) {
+        std::cout << it.second << ' '
+                  << it.first << std::endl;
+    }
 }
