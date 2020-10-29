@@ -25,15 +25,13 @@ std::vector<std::string> uniqueIPs(std::string fileName);
 
 double getPostRatio(std::string fileName);
 
-void mostCommonNumbers(std::string fileName);
-
-int compareMapValues(std::pair<int, int> a, std::pair<int, int> b);
-
-void sort(std::map<int, int> &M);
-
 std::string ticTacResult(std::string fileName);
 
 void encodedLines(std::string fileName);
+
+void mostCommonNumbers(std::string fileName);
+
+int compareMapValues(std::pair<int, int> a, std::pair<int, int> b);
 
 int main()
 {
@@ -547,6 +545,8 @@ void encodedLines(std::string fileName)
     myFile.close();
 }
 
+// LOTTERY
+
 void mostCommonNumbers(std::string fileName)
 {
     std::ifstream myFile;
@@ -609,24 +609,4 @@ void mostCommonNumbers(std::string fileName)
 int compareMapValues(std::pair<int, int> a, std::pair<int, int> b)
 {
     return a.second < b.second;
-}
-
-void sort(std::map<int, int> &M)
-{
-
-    // Declare a multimap
-    std::multimap<int, int> MM;
-
-    // Insert every (key-value) pairs from
-    // map M to multimap MM as (value-key)
-    // pairs
-    for (auto &it : M) {
-        MM.insert({it.second, it.first});
-    }
-
-    // Print the multimap
-    for (auto &it : MM) {
-        std::cout << it.second << ' '
-                  << it.first << std::endl;
-    }
 }
