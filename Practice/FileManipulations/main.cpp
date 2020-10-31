@@ -552,10 +552,10 @@ void mostCommonNumbers(std::string fileName)
     std::ifstream myFile;
     std::string numbers;
     std::string line;
-    std::string temp;
+    int temp;
+    char skip;
 
     std::vector<int> intVec;
-    // std::vector<std::string> strVec;
     std::map<int, int> winningNumbers;
     std::map<int, int>::iterator itMap;
 
@@ -569,11 +569,14 @@ void mostCommonNumbers(std::string fileName)
             numbers = line.substr(line.find_last_of("Ft") + 2, 14);
             std::stringstream ss(numbers);
             while (ss) {
-                std::getline(ss, temp, ';');
-                intVec.push_back(std::stoi(temp));
+                if (ss.peek() != ';') {
+                    if (ss >> temp) {
+                        intVec.push_back(temp);
+                    }
+                } else {
+                    ss >> skip;
+                }
             }
-            intVec.pop_back();
-
             ss.str("");
 
             for (int i = 0; i < intVec.size(); ++i) {
